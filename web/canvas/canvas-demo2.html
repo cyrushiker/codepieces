@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>测试的小玩意儿</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="400" height="300"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.save();
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    ctx.fillRect(0, 0, 400, 300);
+    // Save the default state
+    // ctx.fillStyle = 'black';
+    ctx.save();
+
+    // ctx.fillStyle = 'green';
+    ctx.fillRect(10, 10, 100, 100);
+
+    // Restore the default state
+    ctx.restore();
+
+    ctx.fillRect(150, 40, 100, 100);
+    ctx.restore();
+
+
+    
+  </script>
+</body>
+
+</html>

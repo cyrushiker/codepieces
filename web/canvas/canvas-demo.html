@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>canvas模拟复摆</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="800" height="600"></canvas>
+  <script>
+    // 第一步： 先画一个带绳的小球
+    function draw() {
+      var ctx = document.getElementById('canvas').getContext('2d');
+      var ceiling = {
+        l: 50,
+        r: 750,
+        h: 100,
+        step: 25,
+        ang: Math.PI / 6,
+        draw: function () {
+          ctx.beginPath();
+          ctx.moveTo(this.l, this.h);
+          ctx.lineTo(this.r, this.h);
+          ctx.stroke();
+          for (var i = this.l; i <= this.r; i += this.step) {
+            // 将线旋转一定角度
+            // ctx.rotate(-ang);
+            ctx.moveTo(i, this.h);
+            ctx.lineTo(i + 10, this.h - 10);
+          }
+          ctx.closePath();
+          ctx.stroke();
+        }
+      }
+      ceiling.draw();
+      var pendulum = {
+        x: 400,
+        y: 500,
+        lh: 400,
+        radius: 15,
+        color: 'black',
+        draw: function () {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y - this.lh, 4, 0, Math.PI, false);
+          ctx.moveTo(this.x, this.y - this.lh);
+          ctx.lineTo(this.x, this.y);
+          ctx.moveTo(this.x, this.y);
+          ctx.stroke();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+          ctx.closePath();
+          ctx.fillStyle = this.color;
+          ctx.fill();
+        }
+      }
+      pendulum.draw();
+    }
+    draw();
+  </script>
+</body>
+
+</html>
